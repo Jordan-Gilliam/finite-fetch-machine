@@ -1,3 +1,5 @@
 describe('init', () => {
-  expect(true).toEqual(true)
+  it('expects t = t', () => {
+    expect(true).toEqual(true)
+  })
 })
