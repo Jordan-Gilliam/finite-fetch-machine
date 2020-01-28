@@ -1,0 +1,8 @@
+node_modules
+dist
+esm
+*.log
+*.tgz
+.env
+.DS_Store
+package-lock.json

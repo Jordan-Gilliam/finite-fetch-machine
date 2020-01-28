@@ -1,0 +1,65 @@
+{
+  "name": "finite-fetch-machine",
+  "version": "1.0.0",
+  "description": "SSR Fetching library based on finite states",
+  "homepage": "https://github.com/Jordan-Gilliam/finite-fetch-machine#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jordan-Gilliam/finite-fetch-machine.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jordan-Gilliam/finite-fetch-machine/issues"
+  },
+  "main": "./dist/index.js",
+  "module": "./esm/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**",
+    "esm/**"
+  ],
+  "scripts": {
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:cjs": "ncc build src/index.ts -o dist -m -e react",
+    "build:esm": "tsc --target ESNext --module ES6 --outDir esm",
+    "watch": "tsc --watch",
+    "types:check": "tsc --noEmit",
+    "format": "prettier --write \"{src,test,examples}/**/*.{ts,tsx}\"",
+    "lint": "eslint \"{src,test,examples}/**/*.{ts,tsx}\"",
+    "lint:fix": "eslint \"{src,test,examples}/**/*.{ts,tsx}\" --fix",
+    "test": "jest"
+  },
+  "dependencies": {
+    "isomorphic-unfetch": "^3.0.0",
+    "xstate": "^4.7.7"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.1.0",
+    "@types/node": "^13.5.0",
+    "@typescript-eslint/eslint-plugin": "^2.18.0",
+    "@typescript-eslint/parser": "^2.18.0",
+    "@zeit/ncc": "^0.21.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "husky": "^4.2.1",
+    "jest": "^25.1.0",
+    "lint-staged": "^10.0.3",
+    "prettier": "^1.19.1",
+    "ts-jest": "^25.0.0",
+    "typescript": "^3.7.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run types:check && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "npm run lint:fix",
+      "npm run format",
+      "git add"
+    ]
+  }
+}
